@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React练习-点击显示隐藏</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/browser.js"></script>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+<script type="text/babel">
+    //声明组件
+    class Showhide extends React.Component{
+        constructor(...args){
+            super(...args);
+            this.state = {display:'block'};
+        }
+
+        fn(){
+            this.setState({
+                display:this.state.display == 'block' ? 'none' : 'block'
+            })
+        }
+
+        render(){
+            return <div>
+                    <input type="button" value='显示隐藏' onClick={this.fn.bind(this)}/>
+                    <div className='box' style={{display:this.state.display}}>内容区</div>
+                </div>;
+        }
+    }
+
+    //
+    window.onload = function () {
+        var oDiv = document.getElementById('div1');
+
+        ReactDOM.render(
+            <Showhide/>,
+            oDiv
+        );
+    };
+
+</script>
+</html>

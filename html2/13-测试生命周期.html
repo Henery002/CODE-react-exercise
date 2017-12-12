@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React练习-生存周期</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/browser.js"></script>
+</head>
+<body>
+    <div id='div1'>
+
+    </div>
+</body>
+    <script type="text/babel">
+        //
+        class Comp extends React.Component{
+            //创建之前
+            componentWillMount(){
+                console.log('即将创建完成');
+            }
+
+            //创建之后
+            componentDidMount(){
+                console.log('刚刚创建完');
+            }
+
+            //
+
+            //
+            render(){
+                return <div>
+                    测试生存周期
+                    </div>;
+            };
+        }
+
+        //
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+
+            ReactDOM.render(
+                <Comp/>,
+                oDiv
+            );
+        }
+
+    </script>
+</html>

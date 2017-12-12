@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React练习-创建列表</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/browser.js"></script>
+</head>
+<body>
+    <div id='div1'>
+
+    </div>
+</body>
+    <script type="text/babel">
+        //子组件
+        class Item extends React.Component{
+            constructor (args){
+                super(...args);
+            }
+            //
+            render(){
+                return <li>{this.props.value}</li>;
+            }
+        }
+
+        //
+        class List extends React.Component{
+            constructor (...args){
+                super(...args);
+                // this.arr = [12,5,67,32,9]; 
+                //
+                this.state = {
+                    arr:[12,5,67,32,9]
+                };
+            }
+
+            //点击按钮往列表中添加元素
+            fn(){
+                // this.arr.push(Math.random());
+                // console.log(this.arr);
+                this.setState({
+                    arr: this.state.arr.concat([Math.random()])
+                })
+            }
+
+            render(){
+                // var arr = [12,5,67,32,9];
+                var arr = this.state.arr;
+                var result = [];
+                for(var i = 0; i < arr.length; i ++){
+                    result.push(<Item value={arr[i]}/>);
+                }   
+                return <ul>
+                        <input type='button' value='按钮' onClick={this.fn.bind(this)}/><br/>
+                        {result}
+                    </ul>;
+            }
+        }
+
+        //渲染组件
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+
+            ReactDOM.render(
+                <List/>,
+                oDiv
+            );
+        }
+
+    </script>
+</html>
